@@ -3,3 +3,13 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/1.0.0/configuration/parameters.html
+
+iris_feature_group:
+  name: iris_kedro
+  version: 2
+  description: "Iris flower dataset version 2 via Kedro"
+  primary_key:
+    - sepal_length
+    - sepal_width
+    - petal_length
+    - petal_width

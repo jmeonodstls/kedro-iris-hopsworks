@@ -3,4 +3,6 @@ jupyterlab>=3.0
 notebook
 kedro~=1.0.0
 hopsworks[python]
+python-dotenv
+kedro-datasets[pandas]
 

@@ -44,3 +44,10 @@ CONFIG_LOADER_ARGS = {
 # Class that manages the Data Catalog.
 # from kedro.io import DataCatalog
 # DATA_CATALOG_CLASS = DataCatalog
+
+from kedro_datasets.pandas import CSVDataset
+
+# settings.py
+#from kedro.framework.hooks import _create_hook_manager
+
+#HOOKS = []  # <-- esto desactiva todos los hooks, incluido kedro-viz
