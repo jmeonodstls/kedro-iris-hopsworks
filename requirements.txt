@@ -2,7 +2,16 @@ ipython>=8.10
 jupyterlab>=3.0
 notebook
 kedro==0.19.14
-hopsworks[python]
+hopsworks[python]==4.3.2
 python-dotenv
 kedro-datasets[pandas,memory]
+joblib 
+seaborn 
+scikit-learn
+hsml 
+matplotlib
+
+
+
+
 
