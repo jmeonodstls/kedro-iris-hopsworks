@@ -3,3 +3,18 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/1.0.0/configuration/parameters.html
+
+# parameters/training.yml
+
+n_neighbors: 2
+test_size: 0.2
+
+feature_view:
+  name: iris_kedro
+  version: 2
+  label: variety
+
+model:
+  name: iris_kedro
+  version: 2
+  description: Iris Flower Predictor from Kedro
