@@ -50,4 +50,8 @@ from kedro_datasets.pandas import CSVDataset
 # settings.py
 #from kedro.framework.hooks import _create_hook_manager
 
-#HOOKS = []  # <-- esto desactiva todos los hooks, incluido kedro-viz
+# src/kedro_iris_hopsworks/settings.py
+
+from kedro_iris_hopsworks.hooks.hooks import HopsworksLoginHooks
+
+HOOKS = (HopsworksLoginHooks(),)

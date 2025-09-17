@@ -1,8 +1,8 @@
 ipython>=8.10
 jupyterlab>=3.0
 notebook
-kedro~=1.0.0
+kedro==0.19.14
 hopsworks[python]
 python-dotenv
-kedro-datasets[pandas]
+kedro-datasets[pandas,memory]
 

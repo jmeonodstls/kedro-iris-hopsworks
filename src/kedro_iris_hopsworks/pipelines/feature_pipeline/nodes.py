@@ -47,19 +47,10 @@ def generate_iris_data_node(BACKFILL: bool, iris_data: pd.DataFrame) -> pd.DataF
         return get_random_iris_flower()
 
 ### ✅ Nodo `insert_into_hopsworks_node`
-def insert_into_hopsworks_node(df, parameters):
+def insert_into_hopsworks_node(df, parameters, project):
     """
-    Inserta los datos en el Feature Group de Hopsworks usando los parámetros especificados.
+    Inserta los datos en el Feature Group de Hopsworks usando el objeto `project` recibido.
     """
-    # Cargar variables de entorno
-    load_dotenv()
-
-    # Autenticación con API Key desde el archivo .env
-    project = hopsworks.login(
-        project="first_ml_system",  # nombre de tu proyecto en Hopsworks
-        api_key_value=os.getenv("HOPSWORKS_API_KEY")
-    )
-    
     fs = project.get_feature_store()
 
     iris_fg = fs.get_or_create_feature_group(
@@ -70,5 +61,5 @@ def insert_into_hopsworks_node(df, parameters):
     )
 
     iris_fg.insert(df, write_options={"ignore_duplicate_keys": "true", "wait_for_job": "true"})
-    
     return df
+

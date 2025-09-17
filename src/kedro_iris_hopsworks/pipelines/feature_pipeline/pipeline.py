@@ -12,7 +12,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             func=generate_iris_data_node,
             inputs={
                 "BACKFILL": "params:BACKFILL",
-                "iris_data": "iris_data"  # viene del catalog.yml
+                "iris_data": "iris_data"
             },
             outputs="iris_df",
             name="generate_iris_data_node"
@@ -21,7 +21,8 @@ def create_pipeline(**kwargs) -> Pipeline:
             func=insert_into_hopsworks_node,
             inputs={
                 "df": "iris_df",
-                "parameters": "params:iris_feature_group"
+                "parameters": "params:iris_feature_group",
+                "project": "project_hopsworks"
             },
             outputs=None,
             name="insert_into_hopsworks_node"
