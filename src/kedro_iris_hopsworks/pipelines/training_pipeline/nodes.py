@@ -87,7 +87,7 @@ def save_confusion_matrix(trained_model, X_test, y_test):
 def register_model(project, trained_model, X_train, y_train, metrics, model_params):
     mr = project.get_model_registry()
 
-    model_dir = "iris_model"
+    model_dir = "data/07_model_output" #"iris_model"# 
     os.makedirs(model_dir, exist_ok=True)
 
     joblib.dump(trained_model, f"{model_dir}/iris_model.pkl")
