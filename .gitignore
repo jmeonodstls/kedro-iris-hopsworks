@@ -15,6 +15,9 @@ data/**
 # except their sub-folders
 !data/**/
 !data/01_raw/iris.csv
+!data/08_reporting/
+!data/08_reporting/*.png
+!data/08_reporting/*.xlsx
 
 # also keep all .gitkeep files
 !.gitkeep
