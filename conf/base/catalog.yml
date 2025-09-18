@@ -7,4 +7,16 @@ iris_data:
   type: pandas.CSVDataset
   filepath: "data/01_raw/iris.csv"
 
-## 
+latest_iris_img:
+  type: pandas.CSVDataset
+  filepath: data/08_reporting/latest_iris.png
+
+actual_iris_img:
+  type: pandas.CSVDataset
+  filepath: data/08_reporting/actual_iris.png
+
+history_predictions:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/history_predictions.xlsx
+
+

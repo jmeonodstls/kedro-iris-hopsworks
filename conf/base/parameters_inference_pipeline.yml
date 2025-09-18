@@ -3,3 +3,12 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/1.0.0/configuration/parameters.html
+
+inference:
+  feature_view_name: iris_kedro
+  feature_view_version: 2
+  model_name: iris_kedro
+  model_version: 2
+  prediction_fg_name: iris_predictions_kedro
+  prediction_fg_version: 2
+  prediction_fg_primary_key: datetime

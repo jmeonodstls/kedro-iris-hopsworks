@@ -1,1 +1,2 @@
-BACKFILL: true
+##Se usa true cuando queremos usar el scv, se usa false cuando quermos generar data sintetica
+BACKFILL: false
