@@ -33,13 +33,13 @@ jobs:
         run: kedro run --pipeline inference_pipeline
 
 
-      # 3. Configurar usuario Git (🔥 ESTE BLOQUE 🔥)
+      # 3. Configurar usuario Git
       - name: Set up Git user
         run: |
           git config --global user.email "kedro-actions@example.com"
           git config --global user.name "kedro-actions[bot]"
 
-      # 4. Auto commit
+      # 4. Auto commit con push autenticado vía GH_PAT
       - name: Commit and Push outputs
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -52,7 +52,8 @@ jobs:
           commit_user_name: kedro-actions[bot]
           commit_user_email: kedro-actions@example.com
           branch: main
-          repository: .
+          repository: https://x-access-token:${{ secrets.GH_PAT }}@github.com/jmeonodstls/kedro-iris-hopsworks.git
           commit_author: jmeonodstls <jmeonodstls@users.noreply.github.com>
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+
