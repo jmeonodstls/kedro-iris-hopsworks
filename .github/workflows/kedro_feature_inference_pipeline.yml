@@ -37,29 +37,21 @@ jobs:
 
       - name: Set up Git user
         run: |
-          git config --global user.email "kedro-actions@example.com"
           git config --global user.name "kedro-actions[bot]"
+          git config --global user.email "kedro-actions@example.com"
 
-      - name: Reconfigure remote URL with access token
+      - name: Add and commit changes
         run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/jmeonodstls/kedro-iris-hopsworks.git
+          git add data/08_reporting/*.png data/08_reporting/*.xlsx
+          git commit -m "Automated pipeline output pushed by GitHub Actions" || echo "No changes to commit"
 
-      - name: Commit and Push outputs
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Automated pipeline output pushed by GitHub Actions
-          file_pattern: |
-            data/08_reporting/actual_iris.png
-            data/08_reporting/latest_iris.png
-            data/08_reporting/confusion_matrix.png
-            data/08_reporting/history_predictions.xlsx
-          commit_user_name: kedro-actions[bot]
-          commit_user_email: kedro-actions@example.com
-          branch: main
-          repository: .
-          commit_author: jmeonodstls <jmeonodstls@users.noreply.github.com>
+      - name: Push changes with PAT
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/jmeonodstls/kedro-iris-hopsworks.git
+          git push origin main
+
 
 
 
