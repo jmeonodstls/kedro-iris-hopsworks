@@ -33,13 +33,15 @@ jobs:
         run: kedro run --pipeline inference_pipeline
 
 
-      # 3. Configurar usuario Git
-      - name: Set up Git user
+      # Paso obligatorio: configurar Git y el remote con token
+      - name: Set up Git for Push
         run: |
-          git config --global user.email "kedro-actions@example.com"
           git config --global user.name "kedro-actions[bot]"
+          git config --global user.email "kedro-actions@example.com"
 
-      # 4. Auto commit con push autenticado vía GH_PAT
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/jmeonodstls/kedro-iris-hopsworks.git
+
+      # Acción para hacer commit + push
       - name: Commit and Push outputs
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -52,8 +54,9 @@ jobs:
           commit_user_name: kedro-actions[bot]
           commit_user_email: kedro-actions@example.com
           branch: main
-          repository: https://x-access-token:${{ secrets.GH_PAT }}@github.com/jmeonodstls/kedro-iris-hopsworks.git
+          repository: .  # 👈 Esta es la raíz local. NO una URL.
           commit_author: jmeonodstls <jmeonodstls@users.noreply.github.com>
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+
 
