@@ -22,6 +22,16 @@ jobs:
           pip uninstall -y kedro
           pip install -r requirements.txt
 
+      - name: Run Kedro Feature Pipeline
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: kedro run --pipeline feature_pipeline
+
+      - name: Run Kedro Inference Pipeline
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: kedro run --pipeline inference_pipeline
+
       - name: Commit and Push outputs
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -43,6 +53,8 @@ jobs:
           skip_checkout: false
           disable_globbing: true
           create_branch: false
+
+
 
 
 
