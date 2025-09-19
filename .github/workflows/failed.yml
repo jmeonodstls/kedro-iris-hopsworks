@@ -1,4 +1,4 @@
-name: kedro-feature-and-inference-pipelines
+name: failed
 
 on:
   workflow_dispatch:  # Manual trigger
