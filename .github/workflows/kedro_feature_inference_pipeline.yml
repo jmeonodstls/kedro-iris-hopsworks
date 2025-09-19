@@ -2,6 +2,8 @@ name: kedro-feature-and-inference-pipelines
 
 on:
   workflow_dispatch:   # Se puede lanzar manualmente desde GitHub Actions
+  ##schedule:
+    ##- cron: '00 00 * * *'
 
 jobs:
   run_kedro_pipelines:
@@ -33,10 +35,13 @@ jobs:
         run: kedro run --pipeline inference_pipeline
 
 
-      - name: Configure Git credentials
+      - name: Set up Git user
         run: |
-          git config --global user.name "kedro-actions[bot]"
           git config --global user.email "kedro-actions@example.com"
+          git config --global user.name "kedro-actions[bot]"
+
+      - name: Reconfigure remote URL with access token
+        run: |
           git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/jmeonodstls/kedro-iris-hopsworks.git
 
       - name: Commit and Push outputs
@@ -53,5 +58,8 @@ jobs:
           branch: main
           repository: .
           commit_author: jmeonodstls <jmeonodstls@users.noreply.github.com>
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+
 
 
