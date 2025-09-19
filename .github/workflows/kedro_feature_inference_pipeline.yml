@@ -33,7 +33,7 @@ jobs:
         run: kedro run --pipeline inference_pipeline
 
       - name: Upload output files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pipeline-outputs
           path: |
