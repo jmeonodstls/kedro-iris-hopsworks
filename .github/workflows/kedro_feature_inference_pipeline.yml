@@ -32,11 +32,10 @@ jobs:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
         run: kedro run --pipeline inference_pipeline
 
-      - name: Publish GitHub Pages (auto commit output images)
+      - name: Commit and Push outputs
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Automated pipeline output pushed by GitHub Actions"
-          branch: main
+          commit_message: Automated pipeline output pushed by GitHub Actions
           file_pattern: |
             data/08_reporting/actual_iris.png
             data/08_reporting/latest_iris.png
@@ -44,5 +43,5 @@ jobs:
             data/08_reporting/history_predictions.xlsx
           commit_user_name: kedro-actions[bot]
           commit_user_email: kedro-actions@example.com
-          commit_author: Kedro Bot <kedro@github.com>
-          skip_dirty_check: true
+          branch: main
+          repository: https://x-access-token:${{ secrets.GH_PAT }}@github.com/jmeonodstls/kedro-iris-hopsworks.git
