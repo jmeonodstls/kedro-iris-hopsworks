@@ -32,15 +32,33 @@ jobs:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
         run: kedro run --pipeline inference_pipeline
 
-      - name: Upload output files
-        uses: actions/upload-artifact@v3
+      - name: Commit and Push outputs
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          name: pipeline-outputs
-          path: |
+          commit_message: "Automated pipeline output pushed by GitHub Actions"
+          branch: main
+          commit_options: '--no-verify --signoff'
+          file_pattern: |
             data/08_reporting/actual_iris.png
             data/08_reporting/latest_iris.png
             data/08_reporting/confusion_matrix.png
             data/08_reporting/history_predictions.xlsx
+          repository: .
+          commit_user_name: Kedro Bot
+          commit_user_email: kedro-bot@example.org
+          commit_author: Kedro Bot <actions@github.com>
+          push_options: '--force'
+          skip_dirty_check: true
+          skip_fetch: false
+          skip_checkout: false
+          disable_globbing: true
+          create_branch: false
+
+
+
+
+
+
 
 
 
