@@ -33,15 +33,12 @@ jobs:
         run: kedro run --pipeline inference_pipeline
 
 
-      # Paso obligatorio: configurar Git y el remote con token
-      - name: Set up Git for Push
+      - name: Configure Git credentials
         run: |
           git config --global user.name "kedro-actions[bot]"
           git config --global user.email "kedro-actions@example.com"
-
           git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/jmeonodstls/kedro-iris-hopsworks.git
 
-      # Acción para hacer commit + push
       - name: Commit and Push outputs
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -54,9 +51,7 @@ jobs:
           commit_user_name: kedro-actions[bot]
           commit_user_email: kedro-actions@example.com
           branch: main
-          repository: .  # 👈 Esta es la raíz local. NO una URL.
+          repository: .
           commit_author: jmeonodstls <jmeonodstls@users.noreply.github.com>
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
 
 
